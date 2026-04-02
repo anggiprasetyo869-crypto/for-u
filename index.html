@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Untukmu</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Quicksand:wght@300;400&display=swap');
+
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: #fdf6f0;
+            font-family: 'Quicksand', sans-serif;
+            color: #5a5a5a;
+            cursor: pointer;
+            /* Memberi petunjuk bahwa halaman bisa diklik */
+        }
+
+        .container {
+            width: 90%;
+            max-width: 500px;
+            background: #ffffff;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            border: 1px solid #eee;
+            position: relative;
+            z-index: 1;
+        }
+
+        .envelope-icon {
+            font-size: 40px;
+            margin-bottom: 20px;
+            color: #d4a373;
+        }
+
+        h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.5rem;
+            color: #bc8a5f;
+            margin-bottom: 20px;
+        }
+
+        p {
+            line-height: 1.8;
+            font-size: 1.1rem;
+            margin-bottom: 25px;
+        }
+
+        .highlight {
+            color: #bc8a5f;
+            font-weight: bold;
+        }
+
+        .footer-note {
+            font-size: 0.8rem;
+            color: #aaa;
+            font-style: italic;
+            margin-top: 30px;
+        }
+
+        .heart {
+            color: #e5989b;
+            display: inline-block;
+            animation: beat 1.5s infinite;
+        }
+
+        @keyframes beat {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.1);
+            }
+        }
+
+        /* Menyembunyikan pemutar video YouTube */
+        #youtube-player {
+            display: none;
+        }
+
+        .hint {
+            position: absolute;
+            bottom: 10px;
+            width: 100%;
+            font-size: 0.7rem;
+            color: #ccc;
+        }
+    </style>
+</head>
+
+<body onclick="playMusic()">
+
+    <div class="container">
+        <div class="envelope-icon">✉️</div>
+        <h1>Teruntuk Kamu,</h1>
+
+        <p>
+            Thank you for everything, hiduplah dengan baik dan bahagia. Dan aku lah salah satu orang yang ingin
+            melihatmu selalu baik-baik saja.
+        </p>
+
+        <p>
+            Aku hanyalah orang yang kurang memahaimu dengan baik. Terimakasih telah menerimaku dengan baik. Dan sekarang
+            saatnya untuk kamu bahagia, temukan bahagiamu dengan orang barumu.
+        </p>
+
+        <p class="highlight">
+            "Aku selalu senang melihatmu bahagia walau tidak ada aku di dalamnya."
+        </p>
+
+        <p>
+            I hope you are happy every time.
+        </p>
+
+        <div class="footer-note">
+            Ditulis dengan tulus <span class="heart">❤</span>
+        </div>
+        <div class="hint">(Klik di mana saja untuk memutar musik)</div>
+    </div>
+
+    <div id="youtube-player"></div>
+
+    <script>
+        var player;
+        var played = false;
+
+        // Memuat API YouTube
+        var tag = document.createElement('script');
+        tag.src = "https://www.youtube.com/iframe_api";
+        var firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player('youtube-player', {
+                height: '0',
+                width: '0',
+                videoId: 'Xi-nRpfFgDQ', // ID Video dari link yang kamu berikan
+                playerVars: {
+                    'autoplay': 1,
+                    'loop': 1,
+                    'playlist': 'Xi-nRpfFgDQ'
+                },
+                events: {
+                    'onReady': onPlayerReady
+                }
+            });
+        }
+
+        function onPlayerReady(event) {
+            // Player siap, tapi menunggu interaksi klik untuk bersuara
+        }
+
+        function playMusic() {
+            if (!played) {
+                player.playVideo();
+                played = true;
+                // Menghilangkan petunjuk klik setelah musik jalan
+                document.querySelector('.hint').style.display = 'none';
+            }
+        }
+    </script>
+
+</body>
+
+</html>
